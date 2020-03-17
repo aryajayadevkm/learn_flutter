@@ -1,0 +1,63 @@
+class participant
+{
+  var name;
+  var stack;
+  var mentorOrLearner;
+  var availableTime;
+  
+  static var objects = []; // stores participant objects so that it's iterable
+  
+  participant(this.name, this.stack, this.mentorOrLearner);
+  
+  void addStacks(var stk){
+    this.stack = stk;
+  }
+  
+  void setMentorOrLearner(var mentororlearner){
+    this.mentorOrLearner = mentororlearner;
+  }
+  
+  void setAvailableTime(var time){
+    this.availableTime = time;
+  }
+  
+  static List getMentor(var stk, String time)
+  {
+    var dummy = objects.where((obj) => obj.mentorOrLearner=="mentor" && obj.availableTime==time && obj.stack==stk).toList();
+    return dummy;
+  }
+  
+}
+
+
+
+
+main()
+{
+  
+  participant p1 = new participant("arya", "python", "mentor");
+  p1.setAvailableTime("05:00pm");
+  participant.objects.add(p1);
+  
+  participant p2 = new participant("bob","python", "learner");
+  participant.objects.add(p2);
+ 
+  participant p3 = new participant("cat", "js", "mentor");
+  p3.setAvailableTime("05:00pm");
+  participant.objects.add(p3);
+  
+  participant p4 = new participant("malu", "python", "mentor");
+  p4.setAvailableTime("05:00pm");
+  participant.objects.add(p4);
+  
+  participant p5 = new participant("malu", "python", "mentor");
+  p5.setAvailableTime("12:00pm");
+  participant.objects.add(p5);
+  
+  var dummy = participant.getMentor("python", "05:00pm");
+  for(var dum in dummy){
+    print(dum.name);
+  }
+  
+  
+}
